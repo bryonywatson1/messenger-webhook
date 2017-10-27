@@ -89,8 +89,8 @@ function handleMessage(sender_psid, received_message) {
 
     // Creates the payload for a basic text message, which
     // will be added to the body of our request to the Send API
+    console.log('Responding to the message now')
     response = {
-      console.log('Responding to the message now')
       text: "You sent the message: blalalalalala"
     }
 
