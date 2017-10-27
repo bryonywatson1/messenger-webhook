@@ -90,7 +90,8 @@ function handleMessage(sender_psid, received_message) {
     // Creates the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+      console.log('Responding to the message now')
+      text: "You sent the message: blalalalalala"
     }
 
   } else if (received_message.attachments) {
@@ -124,6 +125,7 @@ function callSendAPI(sender_psid, response) {
   request({
     url: "https://graph.facebook.com/v2.6/me/messages",
     qs: { access_token: PAGE_ACCESS_TOKEN },
+    console.log(qs)
     method: "POST",
     json: request_body
   }, (err, res, body) => {
