@@ -86,11 +86,13 @@ function handleMessage(sender_psid, received_message) {
 
   // Check if the message contains text
   if (received_message.text) {
-
+    console.log('SENDING NOWWWW')
+    console.log(${received_message.text})
     // Create the payload for a basic text message
     response = {
       "text": `You sent the message: "${received_message.text}". Now send me an image!`
     }
+    console.log(response)
   }
 
   // Sends the response message
@@ -111,6 +113,7 @@ function callSendAPI(sender_psid, response) {
     },
     "message": response
   }
+  console.log('IN CALLSENDAPI')
 
   // Send the HTTP request to the Messenger Platform
   request({
