@@ -99,7 +99,7 @@ function handleMessage(sender_psid, received_message) {
   if (greeting && greeting.confidence > 0.8) {
     console.log('This is a greetttiiiinnnngg')
     response = {
-      "text": `y${received_message.text} to you too!`
+      "text": `${received_message.text} to you too!`
     }
   } else if (thanks && thanks.confidence > 0.8) {
     console.log('This is a thank u')
@@ -117,14 +117,43 @@ function handleMessage(sender_psid, received_message) {
      "text": "I'll pencil that in"
    }
  } else {
-    // default logic
-    // Checks if the message contains text
-    if (received_message.text) {
+   if (received_message.text && received_message.text.includes('?'){
+     response = {
+       "text": `${received_message.text}`
+     }
+   } else if (received_message.text) {
       // Create the payload for a basic text message, which
       // will be added to the body of our request to the Send API
-      response = {
-        "text": `You sent me this: "${received_message.text}". Now send me a photo!`
+      response = hiArray[Math.floor(Math.random() * hiArray.length)];
+      hiArray = [response1, response2, response3 response4, response5, response6, response7]
+      response1 = {
+        "text": `I know you said ${received_message.text}, but please could you send me a photo!`
       }
+
+      response2 = {
+        "text": "LALALALALALALALALALALaaaaaaaaaaaaaaaa."
+      }
+
+      response3 = {
+        "text": "What do you mean by that????"
+      }
+
+      response4 = {
+        "text": "Wanting to be someone else is a waste of who you are"
+      }
+
+      response5 = {
+        "text": "What does that mean to you?"
+      }
+
+      response6 = {
+        "text": "Hang on a sec, I just need to go and get the door"
+      }
+
+      response7 = {
+        "text": "Hmm. Let's park that"
+      }
+
     } else if (received_message.attachments) {
       // Get the URL of the message attachment
       let attachment_url = received_message.attachments[0].payload.url;
@@ -134,7 +163,7 @@ function handleMessage(sender_psid, received_message) {
           "payload": {
             "template_type": "generic",
             "elements": [{
-              "title": "Did you really want me to see this?",
+              "title": "Is this a photo of you?",
               "subtitle": "Tap a button to answer.",
               "image_url": attachment_url,
               "buttons": [
@@ -168,9 +197,9 @@ function handlePostback(sender_psid, received_postback) {
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = { "text": "Omg Amazingggggg!" }
+    response = { "text": "Omg! You look great!!!" }
   } else if (payload === 'no') {
-    response = { "text": "Oh no :-( Send me another thing)." }
+    response = { "text": "Oh :-( Please send a photo 8-)" }
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
