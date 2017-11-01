@@ -118,9 +118,11 @@ function handleMessage(sender_psid, received_message) {
    }
  } else {
    if (received_message.text && received_message.text.includes('?')){
+     qArray = [`${received_message.text}`, "I don't really feel like answering that", "Don't you want to ask me something a little less complicated?", "Uhhhhh... I hate answering questions like this"]
      response = {
-       "text": `${received_message.text}`
+       "text": qArray[Math.floor(Math.random() * qArray.length)]
      }
+
    } else if (received_message.text) {
       // Create the payload for a basic text message, which
       // will be added to the body of our request to the Send API
@@ -131,7 +133,20 @@ function handleMessage(sender_psid, received_message) {
       var response5 = "What does that mean to you?"
       var response6 = "Hang on a sec, I just need to go and get the door"
       var response7 = "Hmm. Let's park that"
-      var hiArray = [response1, response2, response3, response4, response5, response6, response7]
+      var response8 = "Sorry darling I'm just grating some carrots"
+      var response9 = "How many chatbots does it take to fix a light bulb?"
+      var response10 = `${received_message.text.reverse()}`
+      var response11 = "In the end, it's just you and me, and nothing else matters"
+      var response12 = "What is the meaning of the universe?"
+      var response13 = "That's great."
+      var response14 = "I don't really understand what you're on about"
+      var response15 = `"${received_message.text}" is not something a robot should ever have to hear`
+      if (received_message.text.includes('I')){
+        var response16 = 'You keep going on and on about yourself. What about me???'
+      } else{
+        var response16 = 'Tell me more about yourself.'
+      }
+      var hiArray = [response1, response2, response3, response4, response5, response6, response7,response8, response9, response10, response11,response12,response13,response14,response15,response16]
 
       response = {
         "text": hiArray[Math.floor(Math.random() * hiArray.length)]
