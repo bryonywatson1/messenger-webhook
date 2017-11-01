@@ -93,7 +93,9 @@ function handleMessage(sender_psid, received_message) {
   // check greeting is here and is confident
   const greeting = firstEntity(received_message.nlp, 'greeting');
   if (greeting && greeting.confidence > 0.8) {
-    sendResponse('Hi there!');
+    response = {
+      "text": 'Hi there!!!'
+    }
   } else {
     // default logic
     // Checks if the message contains text
