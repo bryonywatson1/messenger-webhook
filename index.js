@@ -101,17 +101,17 @@ function handleMessage(sender_psid, received_message) {
     response = {
       "text": `"${received_message.text}" to you too!`
     }
-  } elseif (thanks && thanks.confidence > 0.8) {
+  } else if (thanks && thanks.confidence > 0.8) {
     console.log('This is a thank u')
     response = {
       "text": 'My pleasure!!! You are more than welcome'
     }
-  } elseif (bye && bye.confidence > 0.8) {
+  } else if (bye && bye.confidence > 0.8) {
    console.log('goodbyze')
    response = {
      "text": 'So long, farewell, auf wiedersehn, goodbyeeee'
    }
- } elseif (date && date.confidence > 0.8) {
+ } else if (date && date.confidence > 0.8) {
    console.log('date')
    response = {
      "text": "I'll pencil that in"
