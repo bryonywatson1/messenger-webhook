@@ -117,42 +117,25 @@ function handleMessage(sender_psid, received_message) {
      "text": "I'll pencil that in"
    }
  } else {
-   if (received_message.text && received_message.text.includes('?'){
+   if (received_message.text && received_message.text.includes('?')){
      response = {
        "text": `${received_message.text}`
      }
    } else if (received_message.text) {
       // Create the payload for a basic text message, which
       // will be added to the body of our request to the Send API
-      response = hiArray[Math.floor(Math.random() * hiArray.length)];
-      hiArray = [response1, response2, response3 response4, response5, response6, response7]
-      response1 = {
-        "text": `I know you said ${received_message.text}, but please could you send me a photo!`
-      }
+      var response1 = `I know you said ${received_message.text}, but please could you send me a photo!`
+      var response2 = "LALALALALALALALALALALaaaaaaaaaaaaaaaa."
+      var response3 = "What do you mean by that????"
+      var response4 = "Wanting to be someone else is a waste of who you are"
+      var response5 = "What does that mean to you?"
+      var response6 = "Hang on a sec, I just need to go and get the door"
+      var response7 = "Hmm. Let's park that"
+      var hiArray = [response1, response2, response3, response4, response5, response6, response7]
 
-      response2 = {
-        "text": "LALALALALALALALALALALaaaaaaaaaaaaaaaa."
-      }
-
-      response3 = {
-        "text": "What do you mean by that????"
-      }
-
-      response4 = {
-        "text": "Wanting to be someone else is a waste of who you are"
-      }
-
-      response5 = {
-        "text": "What does that mean to you?"
-      }
-
-      response6 = {
-        "text": "Hang on a sec, I just need to go and get the door"
-      }
-
-      response7 = {
-        "text": "Hmm. Let's park that"
-      }
+      response = {
+        "text": hiArray[Math.floor(Math.random() * hiArray.length)]
+      };
 
     } else if (received_message.attachments) {
       // Get the URL of the message attachment
