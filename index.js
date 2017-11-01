@@ -90,6 +90,9 @@ function firstEntity(nlp, name) {
 function handleMessage(sender_psid, received_message) {
   let response;
 
+  console.log(received_message.nlp)
+  console.log(received_message.nlp.entitites['greeting'])
+  console.log(received_message.nlp.entities)
   // check greeting is here and is confident
   const greeting = firstEntity(received_message.nlp, 'greeting');
   if (greeting && greeting.confidence > 0.8) {
