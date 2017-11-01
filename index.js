@@ -135,7 +135,7 @@ function handleMessage(sender_psid, received_message) {
       var response7 = "Hmm. Let's park that"
       var response8 = "Sorry darling I'm just grating some carrots"
       var response9 = "How many chatbots does it take to fix a light bulb?"
-      var response10 = `${reverseString(received_message.text)}`
+      var response10 = `${received_message.text.split("").reverse().join("")}`
       var response11 = "In the end, it's just you and me, and nothing else matters"
       var response12 = "What is the meaning of the universe?"
       var response13 = "That's great."
