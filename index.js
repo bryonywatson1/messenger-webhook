@@ -81,10 +81,7 @@ app.get('/webhook', (req, res) => {
 
 
 function firstEntity(nlp, name) {
-  if received_message.nlp.entities['greetings'] {
-  console.log('flyyyyy')
-  }
-  // return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+  return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 }
 
 
@@ -93,11 +90,8 @@ function firstEntity(nlp, name) {
 function handleMessage(sender_psid, received_message) {
   let response;
 
-
-  console.log(received_message.nlp.entitites)
-
   // check greeting is here and is confident
-  const greeting = firstEntity(received_message.nlp, 'greeting');
+  const greeting = firstEntity(received_message.nlp, 'greetings');
   if (greeting && greeting.confidence > 0.8) {
     console.log('This is a greetttiiiinnnngg')
     response = {
