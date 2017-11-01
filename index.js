@@ -94,12 +94,12 @@ function handleMessage(sender_psid, received_message) {
   const greeting = firstEntity(received_message.nlp, 'greetings');
   const thanks = firstEntity(received_message.nlp, 'thanks');
   const bye = firstEntity(received_message.nlp, 'bye');
-  const date = firstEntity(received_message.nlp, 'dates');
+  const date = firstEntity(received_message.nlp, 'datetime');
 
   if (greeting && greeting.confidence > 0.8) {
     console.log('This is a greetttiiiinnnngg')
     response = {
-      "text": `"${received_message.text}" to you too!`
+      "text": `y${received_message.text} to you too!`
     }
   } else if (thanks && thanks.confidence > 0.8) {
     console.log('This is a thank u')
