@@ -118,7 +118,7 @@ function handleMessage(sender_psid, received_message) {
    }
  } else {
    if (received_message.text && received_message.text.includes('?')){
-     qArray = [`${received_message.text}`, "I don't really feel like answering that", "Don't you want to ask me something a little less complicated?", "Uhhhhh... I hate answering questions like this", "I don't love being asked stuff you know", "Lets talk about something else", "My dog ate my answer", "I don't understand why you're asking that?", "No", "Yes :-D", "HEHEHEHEHEHEHEHEHEH"]
+     qArray = [`${received_message.text}`, "I don't really feel like answering that", "Don't you want to ask me something a little less complicated?", "Uhhhhh... I hate answering questions like this", "I don't love being asked stuff you know", "Lets talk about something else", "My dog ate my answer", "I don't understand why you're asking that?", "No", "Yes :-D", "HEHEHEHEHEHEHEHEHEH", "That's a good question....", "Wouldn't you like to know?", "Well....", "? ;-)"]
      response = {
        "text": qArray[Math.floor(Math.random() * qArray.length)]
      }
