@@ -81,25 +81,64 @@ app.get('/webhook', (req, res) => {
 
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
-
   let response;
 
-  // Check if the message contains text
+  // Checks if the message contains text
   if (received_message.text) {
-    console.log('SENDING NOWWWW')
-    // Create the payload for a basic text message
+    // Create the payload for a basic text message, which
+    // will be added to the body of our request to the Send API
     response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an image!`
+      "text": `You sent me this: "${received_message.text}". Now send me a photo!`
+    }
+  } else if (received_message.attachments) {
+    // Get the URL of the message attachment
+    let attachment_url = received_message.attachments[0].payload.url;
+    response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Did you really want me to see this?",
+            "subtitle": "Tap a button to answer.",
+            "image_url": attachment_url,
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "Yes!",
+                "payload": "yes",
+              },
+              {
+                "type": "postback",
+                "title": "No!",
+                "payload": "no",
+              }
+            ],
+          }]
+        }
+      }
     }
   }
 
-  // Sends the response message
+  // Send the response message
   callSendAPI(sender_psid, response);
 }
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
+  let response;
 
+  // Get the payload for the postback
+  let payload = received_postback.payload;
+
+  // Set the response based on the postback payload
+  if (payload === 'yes') {
+    response = { "text": "Omg Amazingggggg!" }
+  } else if (payload === 'no') {
+    response = { "text": "Oh no :-( Send me another thing)." }
+  }
+  // Send the message to acknowledge the postback
+  callSendAPI(sender_psid, response);
 }
 
 // Sends the response message
@@ -111,7 +150,6 @@ function callSendAPI(sender_psid, response) {
     },
     "message": response
   }
-  console.log('IN CALLSENDAPI')
 
   // Send the HTTP request to the Messenger Platform
   request({
@@ -122,8 +160,11 @@ function callSendAPI(sender_psid, response) {
   }, (err, res, body) => {
     if (!err) {
       console.log('message sent!')
+      console.log(res)
     } else {
       console.error("Unable to send message:" + err);
     }
+
   });
+
 }
