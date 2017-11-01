@@ -99,7 +99,7 @@ function handleMessage(sender_psid, received_message) {
   if (greeting && greeting.confidence > 0.8) {
     console.log('This is a greetttiiiinnnngg')
     response = {
-      "text": 'Hi there!!!'
+      "text": `"${received_message.text}" to you too!`
     }
   } elseif (thanks && thanks.confidence > 0.8) {
     console.log('This is a thank u')
