@@ -92,12 +92,31 @@ function handleMessage(sender_psid, received_message) {
 
   // check greeting is here and is confident
   const greeting = firstEntity(received_message.nlp, 'greetings');
+  const thanks = firstEntity(received_message.nlp, 'thanks');
+  const bye = firstEntity(received_message.nlp, 'bye');
+  const date = firstEntity(received_message.nlp, 'dates');
+
   if (greeting && greeting.confidence > 0.8) {
     console.log('This is a greetttiiiinnnngg')
     response = {
       "text": 'Hi there!!!'
     }
-  } else {
+  } elseif (thanks && thanks.confidence > 0.8) {
+    console.log('This is a thank u')
+    response = {
+      "text": 'My pleasure!!! You are more than welcome'
+    }
+  } elseif (bye && bye.confidence > 0.8) {
+   console.log('goodbyze')
+   response = {
+     "text": 'So long, farewell, auf wiedersehn, goodbyeeee'
+   }
+ } elseif (date && date.confidence > 0.8) {
+   console.log('date')
+   response = {
+     "text": "I'll pencil that in"
+   }
+ } else {
     // default logic
     // Checks if the message contains text
     if (received_message.text) {
